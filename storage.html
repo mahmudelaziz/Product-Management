@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Storage</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-------------- Head  --------------->
+
+      <header>
+        <!-- Title -->
+        <h1>Store</h1>
+        <h2>Store Product Management</h2>
+      </header>
+      <!-- Nav Bar -->
+      <nav>
+        <ul>
+          <li><a href="customers.html">Customers</a></li>
+          <li><a href="storage.html">Storage</a></li>
+          <li><a href="sales.html">Sales</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </nav>
+
+      <!-------------- Body  --------------->
+
+      <!-- Create Product -->
+      <div id="create_product_blur" class="hide">
+        <div id="create_product">
+
+          <!-- Product Info -->
+          <div class="inputs">
+            <input type="text" id="name" placeholder="Name" />
+            <input type="number" id="cont" placeholder="Cont" />
+            <input type="number" id="price" placeholder="Price" />
+            <select name="category" id="category" onchange="change(value)">
+              <option value="none" selected>Select Product Type</option>
+              <option value="fabric">Fabric</option>
+              <option value="clothing">Clothing</option>
+              <option value="shoes">Shoes</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="selectOptions">
+            <!-- Fabric -->
+
+            <div class="hide" id="fab">
+              <label for="length">Fabric Length</label>
+              <input type="number" id="length" />
+            </div>
+
+            <!-- Cloth -->
+
+            <div class="hide" id="cloth">
+              <h3>Clothing Size</h3>
+
+              <div class="sizeType">
+                <input
+                  type="radio"
+                  id="abc"
+                  value="abc"
+                  name="sizeType"
+                  onchange="sizeType()"
+                  checked
+                />
+                <label for="abc">ABC</label>
+                <input
+                  type="radio"
+                  id="123"
+                  value="123"
+                  name="sizeType"
+                  onchange="sizeType()"
+                />
+                <label for="123">123</label>
+              </div>
+
+              <div class="abc">
+                <input type="radio" id="s" value="s" name="abc_size" checked />
+                <label for="s">S</label>
+                <input type="radio" id="m" value="m" name="abc_size" />
+                <label for="m">M</label>
+                <input type="radio" id="l" value="l" name="abc_size" />
+                <label for="l">L</label>
+                <input type="radio" id="xl" value="xl" name="abc_size" />
+                <label for="xl">XL</label>
+                <input type="radio" id="xxl" value="xxl" name="abc_size" />
+                <label for="xxl">XXL</label>
+              </div>
+
+              <div class="n123 hide">
+                <input type="radio" id="1" value="1" name="n123_size" checked />
+                <label for="1">1</label>
+                <input type="radio" id="2" value="2" name="n123_size" />
+                <label for="2">2</label>
+                <input type="radio" id="3" value="3" name="n123_size" />
+                <label for="3">3</label>
+                <input type="radio" id="4" value="4" name="n123_size" />
+                <label for="4">4</label>
+                <input type="radio" id="5" value="5" name="n123_size" />
+                <label for="5">5</label>
+                <input type="radio" id="6" value="6" name="n123_size" />
+                <label for="6">6</label>
+              </div>
+            </div>
+
+            <!-- Shoes -->
+
+            <div class="hide" id="shoes">
+              <h3>Shoes Size</h3>
+
+              <div class="shoesSize">
+                <input
+                  type="radio"
+                  id="40"
+                  value="40"
+                  name="shoes_size"
+                  checked
+                />
+                <label for="40">40</label>
+                
+                <input type="radio" id="41" value="41" name="shoes_size" />
+                <label for="41">41</label>
+
+                <input type="radio" id="42" value="42" name="shoes_size" />
+                <label for="42">42</label>
+
+                <input type="radio" id="43" value="43" name="shoes_size" />
+                <label for="43">43</label>
+
+                <input type="radio" id="44" value="44" name="shoes_size" />
+                <label for="44">44</label>
+
+                <input type="radio" id="45" value="45" name="shoes_size" />
+                <label for="45">45</label>
+              </div>
+            </div>
+
+            <!-- Other Categorys -->
+
+            <div class="hide" id="other">
+              <label for="other_input">Category</label>
+              <input
+                type="text"
+                id="other_input"
+                placeholder="Enter Product Category"
+              />
+              <label for="size_input">Size\Length</label>
+              <input
+                type="text"
+                id="size_input"
+                placeholder="Enter Product Size"
+              />
+            </div>
+          </div>
+
+          <div class="submitdiv">
+            <button id="cancel" onclick="cancelProduct()">CANCEL</button>
+            <button id="submit" onclick="submitEvent()">Create Product</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Show Data -->
+      <div class="outputs">
+        <!-- Serch -->
+
+        <div class="search">
+          <input
+            type="text"
+            id="searchInp"
+            placeholder="Serch"
+            onkeyup="search()"
+          />
+          <button id="search_btn" onclick="search()">SERCH</button>
+          <button id="filter">FILTER</button>
+          <button id="new_product" onclick="newProduct()">NEW PRODUCT</button>
+        </div>
+
+        <button id="dAllBtn" onclick="deleteAll()">Delete All</button>
+
+        <table>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>cont</th>
+            <th>category</th>
+            <th>sizes</th>
+            <th>update</th>
+            <th>delete</th>
+          </tr>
+          <tbody id="products"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-------------- Script  --------------->
+
+    <script src="js/main.js"></script>
+    <script src="js/storage.js"></script>
+  </body>
+</html>

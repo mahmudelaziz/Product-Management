@@ -1,0 +1,363 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #222;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+input{
+  background-color: #111;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  height: 50px;
+  padding-left: 20px;
+  font-size: large;
+  font-weight: 700;
+}
+input[type="number"]{
+  width: 80px !important;
+}
+input[type="radio"]{
+  height: 13px;
+}
+label{
+  font-weight: 700;
+  margin-right: 15px;
+}
+
+button {
+  width: 100%;
+  background-color: #00b3ff;
+  border: none;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+button:hover {
+  background-color: #3ac3fd;
+}
+button:active {
+  background-color: #65cffd;
+}
+
+/* ------------------------------------------------------------ */
+/*                           Head                               */
+/* ------------------------------------------------------------ */
+
+.container {
+  width: 80%;
+  min-width: 750px;
+  margin: auto;
+}
+header {
+  text-align: center;
+  margin: 20px 0;
+}
+h1 {
+  text-transform: uppercase;
+}
+/* Nav Bar */
+ul {
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  padding: 0 20px;
+  border-radius: 20px;
+  background-color: #00b3ff;
+}
+ul li {
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius: 20px;
+  width: 120px;
+  text-align: center;
+  transition: 1s;
+}
+ul li:hover {
+  width: 150px;
+  background-color: #3ebff7;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 150%;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------ */
+/*                           Storage                            */
+/* ------------------------------------------------------------ */
+
+/* -------------------  Craete Product  ----------------------- */
+
+/* Create Container*/
+
+#new_product{
+  margin: 10px 0;
+  background-color: #2fff47;
+  font-weight: 500;
+  font-size: large;
+}
+#new_product:hover {
+  background-color: #67ff5f;
+}
+#new_product:active {
+  background-color: #80fc7a;
+}
+
+#create_product {
+  background-color: #333;
+  border-radius: 50px;
+  width: 700px;
+  height: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 30px;
+  position: fixed;
+  left: 25%;
+  top: 25%;
+}
+
+#create_product input{
+  display: inline-block;
+  margin: 5px;
+  width: auto;
+}
+
+
+.inputs{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  margin: 0 10px;
+}
+
+
+/* Select */
+select {
+  border: none;
+  outline: none;
+  height: 50px;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.selectOptions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+}
+
+#fab {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+[for='length'] {
+  margin: 10px;
+}
+#length {
+  width: 100px;
+}
+
+#cloth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sizeType {
+  display: flex;
+  margin: 10px 0;
+}
+.sizeType div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+}
+.abc,
+.n123,
+.shoesSize {
+  display: flex;
+  flex-flow: row wrap;
+}
+.abc div,
+.n123 div,
+.shoesSize div {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+#shoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#other {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+#other label{
+  margin-right: 0 !important;
+  margin-left: 15px;
+}
+
+/* Submit */
+.submitdiv {
+  display: flex;
+  flex-flow: row ;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  margin-top : 20px;
+}
+#submit {
+  width: 59%;
+  background-color: #2fff47;
+  font-weight: 700;
+  font-size: large;
+  margin: 0 10px;
+}
+#submit:hover {
+  background-color: #67ff5f;
+}
+#submit:active {
+  background-color: #80fc7a;
+}
+#cancel{
+  width: 19%;
+  background-color: tomato;
+  font-weight: 700;
+  font-size: large;
+}
+#cancel:hover{
+  background-color: #fc765e;
+}
+#cancel:active{
+  background-color: #fa8873;
+}
+
+
+/* Show Products */
+
+table {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 700;
+}
+table th {
+  text-transform: uppercase;
+}
+
+/* Serch */
+
+.search {
+  background-color: #222;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-around;
+  padding-top: 20px;
+  position: sticky;
+  top: 0px;
+}
+#searchInp {
+  width: 68%;
+}
+#search_btn , #filter{
+  width: 15%;
+  height: 50px;
+}
+
+
+
+/* Delete */
+
+#dAllBtn {
+  margin: 10px 0;
+}
+.delete{
+  background-color: tomato;
+  font-weight: 700;
+  font-size: large;
+}
+.delete:hover{
+  background-color: #fc765e;
+}
+.delete:active{
+  background-color: #fa8873;
+}
+
+/* Confirm */
+
+#confirm_blur , #create_product_blur{
+  background-color: #000000bd;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+#confirmWindow{
+  background-color: #313131;
+  border-radius: 20px;
+  width: 500px;
+  height: 150px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: 600;
+}
+.confirmBtns{
+  display: flex;
+  justify-content: space-around;
+}
+#cancelC{
+  background-color: #2fff47;
+  width: 48%;
+}
+#confirmC{
+  background-color: tomato;
+  width: 48%;
+}
+
+
+.hide {
+  display: none !important;
+}
