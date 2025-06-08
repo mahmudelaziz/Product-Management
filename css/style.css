@@ -9,7 +9,7 @@ body {
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-input{
+input {
   background-color: #111;
   color: #fff;
   border: none;
@@ -20,31 +20,33 @@ input{
   font-size: large;
   font-weight: 700;
 }
-input[type="number"]{
+input[type='number'] {
   width: 80px !important;
 }
-input[type="radio"]{
+input[type='radio'] {
   height: 13px;
 }
-label{
+label {
   font-weight: 700;
   margin-right: 15px;
 }
 
 button {
   width: 100%;
-  background-color: #00b3ff;
   border: none;
   height: 30px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 700;
+  font-size: large;
 }
-button:hover {
-  background-color: #3ac3fd;
+
+tr:hover {
+  background-color: #00628b;
 }
-button:active {
-  background-color: #65cffd;
+
+td button {
+  width: 90%;
 }
 
 /* ------------------------------------------------------------ */
@@ -75,16 +77,19 @@ ul {
 }
 ul li {
   display: inline-block;
+}
+ul li a{
+  display: inline-block;
   text-transform: uppercase;
   border-radius: 20px;
-  width: 120px;
+  width: fit-content;
+  padding: 0 10px;
   text-align: center;
   transition: 1s;
 }
-ul li:hover {
-  width: 150px;
-  background-color: #3ebff7;
-  text-align: center;
+ul li a:hover {
+  padding: 0 30px;
+  background-color: #048bc5;
 }
 a {
   text-decoration: none;
@@ -93,48 +98,43 @@ a {
   font-weight: 700;
 }
 
-/* ------------------------------------------------------------ */
-/*                           Storage                            */
-/* ------------------------------------------------------------ */
+/*▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰*/
 
-/* -------------------  Craete Product  ----------------------- */
+/* ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ Storage Page ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ */
 
+/*▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰*/
+
+/*====================================================*/
+/*                   Craete Product                   */
+/*====================================================*/
 /* Create Container*/
 
-#new_product{
+#new_product {
   margin: 10px 0;
-  background-color: #2fff47;
-  font-weight: 500;
-  font-size: large;
-}
-#new_product:hover {
-  background-color: #67ff5f;
-}
-#new_product:active {
-  background-color: #80fc7a;
 }
 
-#create_product {
+.window {
   background-color: #333;
   border-radius: 50px;
   width: 700px;
   height: fit-content;
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   padding: 30px;
   position: fixed;
   left: 25%;
   top: 25%;
+  gap: 10px;
 }
 
-#create_product input{
+#create_product input {
   display: inline-block;
   margin: 5px;
   width: auto;
 }
 
-
-.inputs{
+.inputs {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -143,7 +143,6 @@ a {
   height: 200px;
   margin: 0 10px;
 }
-
 
 /* Select */
 select {
@@ -162,7 +161,7 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
-  width:100%;
+  width: 100%;
 }
 
 #fab {
@@ -225,60 +224,33 @@ select {
   margin: 10px 0;
 }
 
-#other label{
+#other label {
   margin-right: 0 !important;
   margin-left: 15px;
 }
 
 /* Submit */
-.submitdiv {
+.createContainer {
   display: flex;
-  flex-flow: row ;
+  flex-flow: row;
   justify-content: center;
   width: 100%;
   height: fit-content;
-  margin-top : 20px;
+  margin-top: 20px;
 }
-#submit {
+#createProduct,
+#soldConfirmBtn {
   width: 59%;
-  background-color: #2fff47;
-  font-weight: 700;
-  font-size: large;
   margin: 0 10px;
 }
-#submit:hover {
-  background-color: #67ff5f;
-}
-#submit:active {
-  background-color: #80fc7a;
-}
-#cancel{
+#cancelProduct,
+#soldCancelBtn {
   width: 19%;
-  background-color: tomato;
-  font-weight: 700;
-  font-size: large;
-}
-#cancel:hover{
-  background-color: #fc765e;
-}
-#cancel:active{
-  background-color: #fa8873;
 }
 
-
-/* Show Products */
-
-table {
-  width: 100%;
-  text-align: center;
-  margin: 20px 0;
-  font-weight: 700;
-}
-table th {
-  text-transform: uppercase;
-}
-
-/* Serch */
+/*===================================================*/
+/*                       Serch                       */
+/*===================================================*/
 
 .search {
   background-color: #222;
@@ -294,33 +266,56 @@ table th {
 #searchInp {
   width: 68%;
 }
-#search_btn , #filter{
+#search_btn,
+#searchByBtn{
   width: 15%;
   height: 50px;
 }
 
+#searchByDiv ,#sortByDiv{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
 
+/*===================================================*/
+/*                       Serch                       */
+/*===================================================*/
 
-/* Delete */
+#sortBy{
+  margin: 10px 0;
+}
+
+/*===================================================*/
+/*                   Show Products                   */
+/*===================================================*/
+
+table {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 700;
+}
+table th {
+  text-transform: uppercase;
+}
+
+/*====================================================*/
+/*                       Delete                       */
+/*====================================================*/
 
 #dAllBtn {
   margin: 10px 0;
 }
-.delete{
-  background-color: tomato;
-  font-weight: 700;
-  font-size: large;
-}
-.delete:hover{
-  background-color: #fc765e;
-}
-.delete:active{
-  background-color: #fa8873;
-}
 
-/* Confirm */
+/*===================================================*/
+/*                      Confirm                      */
+/*===================================================*/
 
-#confirm_blur , #create_product_blur{
+.blur {
   background-color: #000000bd;
   width: 100%;
   height: 100%;
@@ -332,8 +327,7 @@ table th {
   justify-content: center;
   z-index: 1;
 }
-
-#confirmWindow{
+.smal-window {
   background-color: #313131;
   border-radius: 20px;
   width: 500px;
@@ -344,19 +338,119 @@ table th {
   padding: 10px;
   font-weight: 600;
 }
-.confirmBtns{
+.confirmBtns {
   display: flex;
   justify-content: space-around;
 }
-#cancelC{
-  background-color: #2fff47;
+#cancelCM {
   width: 48%;
 }
-#confirmC{
-  background-color: tomato;
+#confirmCM {
   width: 48%;
 }
 
+/*====================================================*/
+/*                        Sold                        */
+/*====================================================*/
+
+#soldContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+#soldContainer div {
+  height: 140px;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+#soldContainer div input {
+  text-align: center;
+}
+#soldwin {
+  flex-flow: column;
+}
+#soldwin h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+big {
+  width: 80px;
+  text-align: center;
+}
+#soldDate {
+  cursor: pointer;
+}
+
+/*▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰*/
+
+/* ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ Sales Page ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ */
+
+/*▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰*/
+
+.all-earnings {
+  width: 100%;
+  height: 50px;
+  background-color: #333333;
+  color: #00ff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: large;
+  margin: 10px 0;
+}
+
+/*====================================================*/
+/*                       Colors                       */
+/*====================================================*/
+
+.red {
+  background-color: tomato;
+}
+.red:hover {
+  background-color: #fc765e;
+}
+.red:active {
+  background-color: #fa8873;
+}
+
+.green {
+  background-color: #2fff47;
+}
+.green:hover {
+  background-color: #67ff5f;
+}
+.green:active {
+  background-color: #80fc7a;
+}
+
+.blue {
+  background-color: #00b3ff;
+}
+.blue:hover {
+  background-color: #3ebff7;
+}
+.blue:active {
+  background-color: #6ebff7;
+}
+
+.text-red {
+  color: red;
+}
+.text-green {
+  color: #00ff00;
+}
+
+.selected{
+  border: #3412f3 solid 5px;
+}
+.active{
+  background-color: #0f75d6 !important;
+}
 
 .hide {
   display: none !important;

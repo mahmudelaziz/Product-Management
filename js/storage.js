@@ -3,47 +3,19 @@
 //---------------------------------------------------------------------//
 
 let searchMood = 'name',
+  sortMood = 'name',
   submitMood = 'create',
   updateThisProduct;
-
-//---------------- Confirm Massig ----------------//
-
-function confirm(confirmMassig, btnText) {
-  const p = document.createElement('p');
-  p.textContent = confirmMassig;
-
-  const cancelConfirm = document.createElement('button');
-  const deleteConfirm = document.createElement('button');
-  cancelConfirm.id = 'cancelC';
-  deleteConfirm.id = 'confirmC';
-  cancelConfirm.textContent = 'Cancel';
-  deleteConfirm.textContent = btnText;
-
-  const confirmBtns = document.createElement('div');
-  confirmBtns.classList.add('confirmBtns');
-  confirmBtns.appendChild(cancelConfirm);
-  confirmBtns.appendChild(deleteConfirm);
-
-  const confirmWindow = document.createElement('div');
-  confirmWindow.id = 'confirmWindow';
-  confirmWindow.appendChild(p);
-  confirmWindow.appendChild(confirmBtns);
-
-  const confirm_blur = document.createElement('div');
-  confirm_blur.id = 'confirm_blur';
-  confirm_blur.appendChild(confirmWindow);
-
-  return confirm_blur;
-}
 
 //----------------------------------------------------------------------//
 //                   Create And Save New Products                       //
 //----------------------------------------------------------------------//
 
 let name = document.getElementById('name');
+let capital = document.getElementById('capital');
 let price = document.getElementById('price');
 let cont = document.getElementById('cont');
-let submit = document.getElementById('submit');
+let createPro = document.getElementById('createProduct');
 
 function change(value) {
   const none = document.querySelector('.selectOptions');
@@ -85,7 +57,7 @@ function sizeType() {
 //------- Product Info --------//
 
 function productInfo() {
-    let category, size;
+  let category, size;
 
   let cat = document.getElementById('category'),
     cat_type = cat.value;
@@ -124,17 +96,20 @@ function productInfo() {
     size = size_input.value;
   }
 
+  let entryDate = document.getElementById('entryDate');
+
   let product = {
-    name: name.value,
-    price: price.value,
-    cont: cont.value,
-    category: category,
-    size: size,
-  };  
+    "name": name.value,
+    "capital": capital.value,
+    "price": price.value,
+    "cont": cont.value,
+    "category": category,
+    "size": size,
+    "entryDate":entryDate.value,
 
-  return product
+  };
+  return product;
 }
-
 
 //------- Create New Product --------//
 
@@ -148,21 +123,27 @@ function create() {
 
 function newProduct() {
   submitMood = 'create';
-  submit.textContent = 'Create Product';
+  createPro.textContent = 'Create Product';
+
+  let entryDate = document.getElementById('entryDate');
+  console.log(entryDate)
+  let date = new Date().toISOString().split('T')[0];
+
+  entryDate.value = date;
 
   document.getElementById('create_product_blur').classList.remove('hide');
 }
 
 function cancelProduct() {
   document.getElementById('create_product_blur').classList.add('hide');
-  showStorage();
-  clear()
+  clear();
 }
 
 //------ Clear Inputs ------//
 
 function clear() {
   name.value = '';
+  capital.value = '';
   price.value = '';
   cont.value = '';
   document.querySelector('option[value="none"]').selected = true;
@@ -175,7 +156,7 @@ function clear() {
   document.querySelector('.selectOptions').classList.add('hide');
 }
 
-function submitEvent() {
+function createProduct() {
   submitMood == 'create' ? create() : updatedProduct(updateThisProduct);
 }
 
@@ -183,53 +164,30 @@ function submitEvent() {
 //                          Show Products                               //
 //----------------------------------------------------------------------//
 
-function showData(i, product) {
-  let tbody = document.querySelector('#products');
-
-  tbody.innerHTML += `<tr>
-  <td>${i + 1}</td>
-  <td>${product.name}</td>
-  <td>${product.price}</td>
-  <td>${product.cont}</td>
-  <td>${product.category}</td>
-  <td>${product.size}</td>        
-  <td><button id="update" onclick='updatedProductInfo(${i})'>update</button></td>
-  <td><button class="delete" onclick='deleteProduct(${i})'>delete</button></td>
-  </tr>`;
-}
-
 //------ Show Products In Storage ------//
 
-function showStorage() {
+function showStorage(arry) {
   let tbody = document.querySelector('#products');
-
   tbody.innerHTML = '';
-  for (let i = 0; i < DataPro.length; i++) {
-    showData(i, DataPro[i]);
+
+  arry == null ? (arry = DataPro) : null;
+
+  for (let i = 0; i < arry.length; i++) {
+    showData(i, arry[i], tbody);
   }
   showDeleteAllBtn();
 }
+showStorage(sortBy(DataPro));
 
-showStorage();
 
-//------ Serch ------//
+//----------------------------------------------------------------------//
+//                           Storage Search                             //
+//----------------------------------------------------------------------//
 
-function search() {
-  let productName = document.getElementById('searchInp').value;
 
-  let tbody = document.querySelector('#products');
-  tbody.innerHTML = '';
 
-  for (let i = 0; i < DataPro.length; i++) {
-    if (
-      DataPro[i].name.includes(productName) ||
-      DataPro[i].category.includes(productName)
-    ) {
-      showData(i, DataPro[i]);
-    }
-  }
-  productName = '' && showStorage();
-}
+
+
 
 //----------------------------------------------------------------------//
 //                         Delete Products                              //
@@ -251,62 +209,26 @@ function showDeleteAllBtn() {
 
 //--------- Delete All Products -----------//
 
-async function deleteAll() {
-  let confirmWindow = confirm(
-    'Are You Sure You Need To Delete This Product?',
-    'Delete'
-  );
-
-  const container = document.querySelector('.container');
-  container.appendChild(confirmWindow);
-
-  await new Promise((resolve, reject) => {
-    document.getElementById('confirmC').onclick = () => {
-      resolve();
-    };
-    document.getElementById('cancelC').onclick = () => {
-      reject();
-    };
-  })
-    .then(() => {
+function deleteAll() {
+  Confirm('Are You Sure You Need To Delete All Products?', 'Delete All').then(
+    () => {
       DataPro.splice(0);
       localStorage.DataPro = JSON.stringify(DataPro);
       showStorage();
-      container.removeChild(confirmWindow);
-    })
-    .catch(() => {
-      container.removeChild(confirmWindow);
-    });
+    }
+  );
 }
 
 //----------- Delete Product -------------//
 
-async function deleteProduct(i) {
-  let confirmWindow = confirm(
-    'Are You Sure You Need To Delete This Product?',
-    'Delete'
-  );
-
-  const container = document.querySelector('.container');
-  container.appendChild(confirmWindow);
-
-  await new Promise((resolve, reject) => {
-    document.getElementById('confirmC').onclick = () => {
-      resolve();
-    };
-    document.getElementById('cancelC').onclick = () => {
-      reject();
-    };
-  })
-    .then(() => {
+function deleteProduct(i) {
+  Confirm('Are You Sure You Need To Delete This Product?', 'Delete').then(
+    () => {
       DataPro.splice(i, 1);
       localStorage.DataPro = JSON.stringify(DataPro);
       showStorage();
-      container.removeChild(confirmWindow);
-    })
-    .catch(() => {
-      container.removeChild(confirmWindow);
-    });
+    }
+  );
 }
 
 //----------------------------------------------------------------------//
@@ -314,7 +236,6 @@ async function deleteProduct(i) {
 //----------------------------------------------------------------------//
 
 function updatedProductInfo(i) {
-
   submitMood = 'update';
   updateThisProduct = i;
 
@@ -324,40 +245,35 @@ function updatedProductInfo(i) {
   name.value = DataPro[i].name;
   price.value = DataPro[i].price;
   cont.value = DataPro[i].cont;
-  submit.textContent = 'Update';
+  createPro.textContent = 'Update';
 
   if (DataPro[i].category == 'fabric') {
-
     document.querySelector('option[value="fabric"]').selected = true;
     change('fabric');
-      
+
     let length = document.getElementById('length');
-    length.value = +DataPro[i].size.slice(0,-1);
-
+    length.value = +DataPro[i].size.slice(0, -1);
   } else if (DataPro[i].category == 'clothing') {
-
     document.querySelector('option[value="clothing"]').selected = true;
     change('clothing');
 
     if (isNaN(+DataPro[i].size)) {
       document.querySelector('input[value="abc"').checked = true;
-      sizeType()
+      sizeType();
       document.querySelector(`input[value="${DataPro[i].size}"`).checked = true;
     } else {
       document.querySelector('input[value="123"').checked = true;
-      sizeType()
+      sizeType();
       document.querySelector(`input[value="${DataPro[i].size}"`).checked = true;
     }
-    
   } else if (DataPro[i].category == 'shoes') {
     document.querySelector('option[value="shoes"]').selected = true;
-    change('shoes')
+    change('shoes');
 
     document.querySelector(`input[value="${DataPro[i].size}"`).checked = true;
-
   } else {
     document.querySelector('option[value="other"]').selected = true;
-    change('other')
+    change('other');
 
     document.getElementById('other_input').value = DataPro[i].category;
     document.getElementById('size_input').value = DataPro[i].size;
@@ -365,9 +281,93 @@ function updatedProductInfo(i) {
 }
 
 function updatedProduct(product) {
-  DataPro.splice(product,1,productInfo());
+  DataPro.splice(product, 1, productInfo());
   localStorage.DataPro = JSON.stringify(DataPro);
   clear();
   document.getElementById('create_product_blur').classList.add('hide');
   showStorage();
+}
+
+//-----------------------------------------------------------------------//
+//                                 Sales                                 //
+//-----------------------------------------------------------------------//
+
+async function sold(i) {
+  document.getElementById('soldWindow').classList.remove('hide');
+
+  let h3 = document.querySelector('#soldwin h3');
+  let soldPrice = document.getElementById('soldPrice');
+  let soldCont = document.getElementById('soldCont');
+  let earnings = document.getElementById('earnings');
+  let resCont = document.getElementById('resCont');
+  let soldDate = document.getElementById('soldDate');
+  let date = new Date().toISOString().split('T')[0];
+
+  h3.textContent = DataPro[i].name;
+
+  soldPrice.value = DataPro[i].price;
+  soldCont.value = 1;
+  soldDate.value = date;
+
+  earnCalc();
+  contCalc();
+
+  soldPrice.addEventListener('keyup', earnCalc);
+  soldCont.addEventListener('keyup', contCalc);
+
+  function earnCalc() {
+    earnings.textContent = soldPrice.value - DataPro[i].capital;
+    +earnings.textContent > 0
+      ? (earnings.style.color = '#0f0')
+      : (earnings.style.color = '#f00');
+  }
+
+  function contCalc() {
+    resCont.textContent = DataPro[i].cont - soldCont.value;
+  }
+
+  await new Promise((resolve, reject) => {
+    document.getElementById('soldConfirmBtn').onclick = () => {
+      document.getElementById('soldWindow').classList.add('hide');
+      resolve();
+    };
+    document.getElementById('soldCancelBtn').onclick = () => {
+      document.getElementById('soldWindow').classList.add('hide');
+      reject();
+    };
+  })
+    .then(productSold)
+    .catch(soldCancel);
+
+  function productSold() {
+    let product = {
+      "name": DataPro[i].name,
+      "capital": DataPro[i].capital,
+      "price": soldPrice.value,
+      "earnings": +earnings.textContent * +soldCont.value,
+      "cont": soldCont.value,
+      "category": DataPro[i].category,
+      "size": DataPro[i].size,
+      "entryDate": DataPro[i].entryDate,
+      "soldDate": soldDate.value,
+    };
+
+    SoldPro.push(product);
+
+    DataPro[i].cont = DataPro[i].cont - soldCont.value;
+    DataPro[i].cont <= 0 && DataPro.splice(i, 1);
+
+    localStorage.DataPro = JSON.stringify(DataPro);
+    localStorage.SoldPro = JSON.stringify(SoldPro);
+
+    soldCancel();
+    showStorage();
+  }
+}
+
+function soldCancel() {
+  document.getElementById('soldPrice').value = '';
+  document.getElementById('soldCont').value = '';
+  document.getElementById('earnings').textContent = '';
+  document.getElementById('resCont').textContent = '';
 }

@@ -17,24 +17,28 @@
       <!-- Nav Bar -->
       <nav>
         <ul>
-          <li><a href="customers.html">Customers</a></li>
-          <li><a href="storage.html">Storage</a></li>
-          <li><a href="sales.html">Sales</a></li>
-          <li><a href="settings.html">Settings</a></li>
+          <li><a class="nav-link" href="customers.html">Customers</a></li>
+          <li><a class="nav-link" href="storage.html">Storage</a></li>
+          <li><a class="nav-link" href="sales.html">Sales</a></li>
+          <li><a class="nav-link" href="settings.html">Settings</a></li>
         </ul>
       </nav>
 
       <!-------------- Body  --------------->
 
       <!-- Create Product -->
-      <div id="create_product_blur" class="hide">
-        <div id="create_product">
-
+      <div id="create_product_blur" class="blur hide">
+        <div id="create_product" class="window">
           <!-- Product Info -->
           <div class="inputs">
             <input type="text" id="name" placeholder="Name" />
-            <input type="number" id="cont" placeholder="Cont" />
+            <input type="number" id="capital" placeholder="Capital" />
             <input type="number" id="price" placeholder="Price" />
+            <input type="number" id="cont" placeholder="Cont" />
+            <div>
+              <label for="entryDate">Entry Date</label>
+              <input type="date" id="entryDate" />
+            </div>
             <select name="category" id="category" onchange="change(value)">
               <option value="none" selected>Select Product Type</option>
               <option value="fabric">Fabric</option>
@@ -120,7 +124,7 @@
                   checked
                 />
                 <label for="40">40</label>
-                
+
                 <input type="radio" id="41" value="41" name="shoes_size" />
                 <label for="41">41</label>
 
@@ -156,9 +160,45 @@
             </div>
           </div>
 
-          <div class="submitdiv">
-            <button id="cancel" onclick="cancelProduct()">CANCEL</button>
-            <button id="submit" onclick="submitEvent()">Create Product</button>
+          <div class="createContainer">
+            <button id="cancelProduct" class="red" onclick="cancelProduct()">
+              CANCEL
+            </button>
+            <button id="createProduct" class="green" onclick="createProduct()">
+              Create Product
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!--------------- Sold --------------->
+
+      <div id="soldWindow" class="blur hide">
+        <div id="soldwin" class="window">
+          <h3>Product Name</h3>
+          <div id="soldContainer">
+            <div>
+              <label for="soldPrice">Sold Price</label>
+              <input type="number" id="soldPrice" placeholder="Price" />
+              <big id="earnings"></big>
+            </div>
+
+            <div>
+              <label for="soldCont">Sold Cont</label>
+              <input type="number" id="soldCont" placeholder="Cont" />
+              <big id="resCont"></big>
+            </div>
+
+            <div>
+              <label for="soldDate">Sold Date</label>
+              <input type="date" id="soldDate" />
+            </div>
+          </div>
+          <div id="soldBtn" class="createContainer">
+            <button id="soldCancelBtn" class="red" onclick="soldCancel()">
+              Cancel
+            </button>
+            <button id="soldConfirmBtn" class="green">Sold</button>
           </div>
         </div>
       </div>
@@ -171,24 +211,51 @@
           <input
             type="text"
             id="searchInp"
-            placeholder="Serch"
-            onkeyup="search()"
+            placeholder="Search By Name"
+            onkeyup="generalSearch()"
           />
-          <button id="search_btn" onclick="search()">SERCH</button>
-          <button id="filter">FILTER</button>
-          <button id="new_product" onclick="newProduct()">NEW PRODUCT</button>
+          <button id="search_btn" class="blue" onclick="generalSearch()">
+            SERCH
+          </button>
+          <button id="searchByBtn" class="blue" onclick="searchByBtn()">
+            SEARCH BY...
+          </button>
+          <div id="searchByDiv" class="hide">
+            <button value="name" class="blue selected">Search By Name</button>
+            <button value="capital" class="blue">Search By Capital</button>
+            <button value="price" class="blue">Search By Price</button>
+            <button value="category" class="blue">Search By Category</button>
+            <button value="size" class="blue">Search By Size</button>
+          </div>
+          <button id="new_product" class="green" onclick="newProduct()">
+            NEW PRODUCT
+          </button>
         </div>
-
-        <button id="dAllBtn" onclick="deleteAll()">Delete All</button>
+        <button id="sortBy" class="blue" onclick="sortByBtn()">
+          Sort By...
+        </button>
+        <div id="sortByDiv" class="hide">
+          <button value="name" class="blue selected">Sort By Name</button>
+          <button value="capital" class="blue">Sort By Capital</button>
+          <button value="price" class="blue">Sort By Price</button>
+          <button value="category" class="blue">Sort By Category</button>
+          <button value="size" class="blue">Sort By Size</button>
+        </div>
+        <button id="dAllBtn" class="red" onclick="deleteAll()">
+          Delete All
+        </button>
 
         <table>
           <tr>
             <th>id</th>
             <th>name</th>
+            <th>capital</th>
             <th>price</th>
             <th>cont</th>
             <th>category</th>
-            <th>sizes</th>
+            <th>size</th>
+            <th>entry date</th>
+            <th>sold</th>
             <th>update</th>
             <th>delete</th>
           </tr>

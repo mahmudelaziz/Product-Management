@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <title>Sales</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
       <!-------------- Head  --------------->
 
@@ -20,19 +19,74 @@
       <!-- Nav Bar -->
       <nav>
         <ul>
-          <li><a href="customers.html">Customers</a></li>
-          <li><a href="storage.html">Storage</a></li>
-          <li><a href="sales.html">Sales</a></li>
-          <li><a href="settings.html">Settings</a></li>
+          <li><a class="nav-link" href="customers.html">Customers</a></li>
+          <li><a class="nav-link" href="storage.html">Storage</a></li>
+          <li><a class="nav-link" href="sales.html">Sales</a></li>
+          <li><a class="nav-link" href="settings.html">Settings</a></li>
         </ul>
       </nav>
 
+      <!-- Show Data -->
+      <div class="outputs">
+        <!-- Serch -->
+
+        <div class="search">
+          <input
+            type="text"
+            id="searchInp"
+            placeholder="Search By Name"
+            onkeyup="generalSearch()"
+          />
+          <button id="search_btn" class="blue" onclick="generalSearch()">
+            SERCH
+          </button>
+          <button id="searchByBtn" class="blue" onclick="searchByBtn()">
+            SEARCH BY...
+          </button>
+          <div id="searchByDiv" class="hide">
+            <button value="name" class="blue selected">Search By Name</button>
+            <button value="capital" class="blue">Search By Capital</button>
+            <button value="price" class="blue">Search By Price</button>
+            <button value="category" class="blue">Search By Category</button>
+            <button value="size" class="blue">Search By Size</button>
+          </div>
+        </div>
+        <button id="sortBy" class="blue" onclick="sortByBtn()">
+          Sort By...
+        </button>
+        <div id="sortByDiv" class="hide">
+          <button value="name" class="blue selected">Sort By Name</button>
+          <button value="capital" class="blue">Sort By Capital</button>
+          <button value="price" class="blue">Sort By Price</button>
+          <button value="category" class="blue">Sort By Category</button>
+          <button value="size" class="blue">Sort By Size</button>
+        </div>
+
+        <div class="all-earnings">
+          <h3 id="allEarn"></h3>
+        </div>
+
+        <table>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>capital</th>
+            <th>price</th>
+            <th>earnings</th>
+            <th>cont</th>
+            <th>category</th>
+            <th>size</th>
+            <th>entry date</th>
+            <th>sold date</th>
+            <th>delete</th>
+          </tr>
+          <tbody id="products"></tbody>
+        </table>
+      </div>
     </div>
-
-
-
     <!--------- Script --------->
-    
+
     <script src="js/main.js"></script>
-</body>
+    <script src="js/sales.js"></script>
+  </body>
 </html>
