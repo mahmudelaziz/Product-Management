@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 })
 
-// Data Storage
+// #region Data Storage
 
 let DataPro;
 if (localStorage.DataPro != null) {
@@ -24,9 +24,10 @@ if (localStorage.SoldPro != null) {
 } else {
   SoldPro = [];
 }
+//#endregion
 
 //----------------------------------------------------------------------//
-//                               Show Data                              //
+// #region                       Show Data                              //
 //----------------------------------------------------------------------//
 
 function showData(id, product, theplaec) {
@@ -57,9 +58,11 @@ function showData(id, product, theplaec) {
   <td>${product.entryDate}</td>
   ${y}`;
 }
+//#endregion
+//----------------------------------------------------------------------//
 
 //----------------------------------------------------------------------//
-//                                Search                                //
+// #region                        Search                                //
 //----------------------------------------------------------------------//
 
 function search(arry,searchType,searchFor) {
@@ -78,18 +81,10 @@ function generalSearch() {
   let arry;
 
   if (location.pathname.includes('storage')) {
-    arry = DataPro;
+    showStorage(sortBy(DataPro));
   } else if (location.pathname.includes('sales')) {
-    arry = SoldPro;
+    showStorage(sortBy(SoldPro));
   }
-
-  let outputs = search(arry, searchMood, searchFor);
-
-  showStorage(sortBy(outputs));
-}
-
-function searchByBtn() {
-  document.getElementById('searchByDiv').classList.toggle('hide');
 }
 
 let searchMoodBtns = document.querySelectorAll('#searchByDiv button');
@@ -106,29 +101,26 @@ searchMoodBtns.forEach((btn) => {
     generalSearch();
   });
 });
-
-//----------------------------------------------------------------------//
-//                               Sort By                                //
+// #endregion
 //----------------------------------------------------------------------//
 
-function sortByBtn() {
-  document.getElementById('sortByDiv').classList.toggle('hide');
-}
+//----------------------------------------------------------------------//
+// #region                       Sort By                                //
+//----------------------------------------------------------------------//
 
 function sortBy(arry) {
-  let sort = [...arry];
   if (sortMood == 'name') {
-    sort.sort((a, b) => a.name.localeCompare(b.name, 'ar'));
+    arry.sort((a, b) => a.name.localeCompare(b.name, 'ar'));
   } else if (sortMood == 'capital') {
-    sort.sort((a, b) => +a.capital - +b.capital);
+    arry.sort((a, b) => +a.capital - +b.capital);
   } else if (sortMood == 'price') {
-    sort.sort((a, b) => +a.price - +b.price);
+    arry.sort((a, b) => +a.price - +b.price);
   } else if (sortMood == 'category') {
-    sort.sort((a, b) => a.category.localeCompare(b.category, 'ar'));
+    arry.sort((a, b) => a.category.localeCompare(b.category, 'ar'));
   } else if (sortMood == 'size') {
-    sort.sort((a, b) => +a.size - +b.size);
+    arry.sort((a, b) => +a.size - +b.size);
   }
-  return sort;
+  return arry;
 }
 
 let sortMoodBtns = document.querySelectorAll('#sortByDiv button');
@@ -144,8 +136,35 @@ sortMoodBtns.forEach((btn) => {
     generalSearch();
   });
 });
+//#endregion
 //----------------------------------------------------------------------//
-//                          Confirm Massig                              //
+
+//----------------------------------------------------------------------//
+// #region                       Earnings                               //
+//----------------------------------------------------------------------//
+
+let earningsMoodBtns = document.querySelectorAll('#earningsDiv button');
+earningsMoodBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    earningsMoodBtns.forEach((Btns) => {
+      Btns.classList.remove('selected');
+    });
+    btn.classList.add('selected');
+
+    earningsMoodMood = btn.value;
+
+    generalSearch();
+  });
+});
+
+
+
+
+//#endregion
+//----------------------------------------------------------------------//
+
+//----------------------------------------------------------------------//
+//#region                   Confirm Massig                              //
 //----------------------------------------------------------------------//
 
 async function Confirm(confirmMassig, btnText, confirmColor) {
@@ -198,3 +217,15 @@ async function Confirm(confirmMassig, btnText, confirmColor) {
     }
   })
 }
+//#endregion
+//----------------------------------------------------------------------//
+
+//----------------------------------------------------------------------//
+// #region                  Other Functions                             //
+//----------------------------------------------------------------------//
+
+function showBtns(id) {
+  document.getElementById(id).classList.toggle('hide');
+}
+// #endregion
+//----------------------------------------------------------------------//

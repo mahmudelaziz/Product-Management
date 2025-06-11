@@ -15,6 +15,7 @@ let name = document.getElementById('name');
 let capital = document.getElementById('capital');
 let price = document.getElementById('price');
 let cont = document.getElementById('cont');
+let entryDate = document.getElementById('entryDate');
 let createPro = document.getElementById('createProduct');
 
 function change(value) {
@@ -96,8 +97,6 @@ function productInfo() {
     size = size_input.value;
   }
 
-  let entryDate = document.getElementById('entryDate');
-
   let product = {
     "name": name.value,
     "capital": capital.value,
@@ -125,8 +124,6 @@ function newProduct() {
   submitMood = 'create';
   createPro.textContent = 'Create Product';
 
-  let entryDate = document.getElementById('entryDate');
-  console.log(entryDate)
   let date = new Date().toISOString().split('T')[0];
 
   entryDate.value = date;
@@ -241,10 +238,12 @@ function updatedProductInfo(i) {
 
   let updateWindow = document.getElementById('create_product_blur');
   updateWindow.classList.remove('hide');
-
+  
   name.value = DataPro[i].name;
+  capital.value = DataPro[i].capital;
   price.value = DataPro[i].price;
   cont.value = DataPro[i].cont;
+  entryDate.value = DataPro[i].entryDate;
   createPro.textContent = 'Update';
 
   if (DataPro[i].category == 'fabric') {

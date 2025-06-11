@@ -109,10 +109,6 @@ a {
 /*====================================================*/
 /* Create Container*/
 
-#new_product {
-  margin: 10px 0;
-}
-
 .window {
   background-color: #333;
   border-radius: 50px;
@@ -249,7 +245,7 @@ select {
 }
 
 /*===================================================*/
-/*                       Serch                       */
+/*                       Search                       */
 /*===================================================*/
 
 .search {
@@ -260,8 +256,8 @@ select {
   flex-flow: wrap row;
   justify-content: space-around;
   padding-top: 20px;
-  position: sticky;
-  top: 0px;
+  /* position: sticky;
+  top: 0px; */
 }
 #searchInp {
   width: 68%;
@@ -272,21 +268,16 @@ select {
   height: 50px;
 }
 
-#searchByDiv ,#sortByDiv{
+#searchByDiv ,#sortByDiv ,#earningsDiv{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
   gap: 10px;
 }
 
-/*===================================================*/
-/*                       Serch                       */
-/*===================================================*/
-
-#sortBy{
-  margin: 10px 0;
+.search button{
+  margin-top: 10px;
 }
 
 /*===================================================*/

@@ -217,7 +217,7 @@
           <button id="search_btn" class="blue" onclick="generalSearch()">
             SERCH
           </button>
-          <button id="searchByBtn" class="blue" onclick="searchByBtn()">
+          <button id="searchByBtn" class="blue" onclick="showBtns('searchByDiv')">
             SEARCH BY...
           </button>
           <div id="searchByDiv" class="hide">
@@ -230,16 +230,16 @@
           <button id="new_product" class="green" onclick="newProduct()">
             NEW PRODUCT
           </button>
-        </div>
-        <button id="sortBy" class="blue" onclick="sortByBtn()">
-          Sort By...
-        </button>
-        <div id="sortByDiv" class="hide">
-          <button value="name" class="blue selected">Sort By Name</button>
-          <button value="capital" class="blue">Sort By Capital</button>
-          <button value="price" class="blue">Sort By Price</button>
-          <button value="category" class="blue">Sort By Category</button>
-          <button value="size" class="blue">Sort By Size</button>
+          <button id="sortBy" class="blue" onclick="showBtns('sortByDiv')">
+            Sort By...
+          </button>
+          <div id="sortByDiv" class="hide">
+            <button value="name" class="blue selected">Sort By Name</button>
+            <button value="capital" class="blue">Sort By Capital</button>
+            <button value="price" class="blue">Sort By Price</button>
+            <button value="category" class="blue">Sort By Category</button>
+            <button value="size" class="blue">Sort By Size</button>
+          </div>
         </div>
         <button id="dAllBtn" class="red" onclick="deleteAll()">
           Delete All

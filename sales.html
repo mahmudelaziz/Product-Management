@@ -40,7 +40,7 @@
           <button id="search_btn" class="blue" onclick="generalSearch()">
             SERCH
           </button>
-          <button id="searchByBtn" class="blue" onclick="searchByBtn()">
+          <button id="searchByBtn" class="blue" onclick="showBtns('searchByDiv')">
             SEARCH BY...
           </button>
           <div id="searchByDiv" class="hide">
@@ -50,20 +50,32 @@
             <button value="category" class="blue">Search By Category</button>
             <button value="size" class="blue">Search By Size</button>
           </div>
-        </div>
-        <button id="sortBy" class="blue" onclick="sortByBtn()">
-          Sort By...
-        </button>
-        <div id="sortByDiv" class="hide">
-          <button value="name" class="blue selected">Sort By Name</button>
-          <button value="capital" class="blue">Sort By Capital</button>
-          <button value="price" class="blue">Sort By Price</button>
-          <button value="category" class="blue">Sort By Category</button>
-          <button value="size" class="blue">Sort By Size</button>
-        </div>
-
-        <div class="all-earnings">
-          <h3 id="allEarn"></h3>
+          
+          <button id="sortBy" class="blue" onclick="showBtns('sortByDiv')">
+            Sort By...
+          </button>
+          <div id="sortByDiv" class="hide">
+            <button value="name" class="blue selected">Sort By Name</button>
+            <button value="capital" class="blue">Sort By Capital</button>
+            <button value="price" class="blue">Sort By Price</button>
+            <button value="category" class="blue">Sort By Category</button>
+            <button value="size" class="blue">Sort By Size</button>
+          </div>
+          
+          <button id="earningsBtn" class="blue" onclick="showBtns('earningsDiv')">
+            Earnings
+          </button>
+          <div id="earningsDiv" class="hide">
+            <button value="Today" class="blue selected">Today</button>
+            <button value="Yesterday" class="blue">Yesterday</button>
+            <button value="Last 7 Days" class="blue">Last 7 Days</button>
+            <button value="Last 30 Days" class="blue">Last 30 Days</button>
+            <button value="All Time" class="blue">All Time</button>
+          </div>
+          
+          <div class="all-earnings">
+            <h3 id="allEarn"></h3>
+          </div>
         </div>
 
         <table>
